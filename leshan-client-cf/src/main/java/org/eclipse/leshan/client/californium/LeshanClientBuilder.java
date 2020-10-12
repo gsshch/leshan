@@ -16,6 +16,7 @@
 package org.eclipse.leshan.client.californium;
 
 import java.net.InetSocketAddress;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
@@ -242,7 +243,8 @@ public class LeshanClientBuilder {
             ObjectsInitializer initializer = new ObjectsInitializer();
             initializer.setInstancesForObject(LwM2mId.SECURITY,
                     Security.noSec("coap://leshan.eclipseprojects.io:5683", 12345));
-            initializer.setInstancesForObject(LwM2mId.SERVER, new Server(12345, 5 * 60, BindingMode.U, false));
+            initializer.setInstancesForObject(LwM2mId.SERVER,
+                    new Server(12345, 5 * 60, EnumSet.of(BindingMode.U), false));
             initializer.setInstancesForObject(LwM2mId.DEVICE, new Device("Eclipse Leshan", "model12345", "12345", "U"));
             objectEnablers = initializer.createAll();
         }
