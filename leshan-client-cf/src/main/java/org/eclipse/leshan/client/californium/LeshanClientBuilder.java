@@ -197,6 +197,7 @@ public class LeshanClientBuilder {
 
     /**
      * Set the additionalAttributes for {@link BootstrapRequest}
+     * 
      * @since 1.1
      */
     public LeshanClientBuilder setBootstrapAdditionalAttributes(Map<String, String> additionalAttributes) {
@@ -243,9 +244,9 @@ public class LeshanClientBuilder {
             ObjectsInitializer initializer = new ObjectsInitializer();
             initializer.setInstancesForObject(LwM2mId.SECURITY,
                     Security.noSec("coap://leshan.eclipseprojects.io:5683", 12345));
-            initializer.setInstancesForObject(LwM2mId.SERVER,
-                    new Server(12345, 5 * 60, EnumSet.of(BindingMode.U), false));
-            initializer.setInstancesForObject(LwM2mId.DEVICE, new Device("Eclipse Leshan", "model12345", "12345", "U"));
+            initializer.setInstancesForObject(LwM2mId.SERVER, new Server(12345, 5 * 60));
+            initializer.setInstancesForObject(LwM2mId.DEVICE,
+                    new Device("Eclipse Leshan", "model12345", "12345", EnumSet.of(BindingMode.U)));
             objectEnablers = initializer.createAll();
         }
         if (encoder == null)
